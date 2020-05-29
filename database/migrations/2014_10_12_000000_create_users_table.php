@@ -20,6 +20,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('photo')->nullable(); // tambahan
+            $table->string('api_token')->nullable(); // tambahan
+            $table->char('role', 1)->comment('0: superadmin, 1: admin, 2: finance, 3: courier'); // tambahan
+            $table->unsignedBigInteger('outlet_id')->nullable(); // tambahan
             $table->timestamps();
         });
     }

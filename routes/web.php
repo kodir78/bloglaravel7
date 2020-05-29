@@ -16,7 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/{any}', function () {
+//     return view('app');
+// })->where('any', '.*'); 
+// Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/{any}', 'FrontController@index')->where('any', '.*');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
